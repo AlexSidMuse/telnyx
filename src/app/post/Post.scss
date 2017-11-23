@@ -1,0 +1,12 @@
+@import "comments/Comments";
+@import "post-not-found/PostNotFound";
+
+.post {
+  margin-bottom: 3rem;
+  .post-title {
+    margin-bottom: .25rem;
+  }
+  .post-meta {
+    margin-bottom: 0.5rem;
+  }
+}

@@ -14,6 +14,8 @@ import {Router, Route, IndexRoute, Redirect, browserHistory} from "react-router"
 import App       from "./app/App";
 import { About } from "./app/about/About";
 import { Home }  from "./app/home/Home";
+import { BlogContainer as Blog }  from "./app/blog/Blog.container";
+import { PostContainer as Post }  from "./app/post/Post.container";
 
 render((
   <Router history={browserHistory}>
@@ -21,6 +23,8 @@ render((
       <IndexRoute component={Home}/>
       <Route path="about" component={About}/>
       <Route path="home" component={Home}/>
+      <Route path="blog" component={Blog}/>
+      <Route path="blog/:slug" component={Post}/>
       <Redirect from="*" to="/home"/>
     </Route>
   </Router>

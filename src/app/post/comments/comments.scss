@@ -1,0 +1,13 @@
+@import "comment/Comment";
+@import "post-comment-form/PostCommentForm";
+
+.post-comments {
+  .post-comment {
+    .post-comment {
+      margin-left: 2rem;
+    }
+  }
+  .post-comment-form {
+    margin-bottom: 2rem;
+  }
+}

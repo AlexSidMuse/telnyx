@@ -2,8 +2,22 @@
  * Global application styles.
  */
 
+// Redefine bootstrap container sizes
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 720px,
+  xl: 720px
+);
+
 // Vendor
 @import "~bootstrap/scss/bootstrap.scss"; // v4: https://github.com/twbs/bootstrap
 
 // Manifest
 @import "scss/base";
+
+// Blog
+@import "app/blog/Blog.scss";
+
+// Post
+@import "app/post/Post.scss";

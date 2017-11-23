@@ -4,13 +4,15 @@ import { Link } from "react-router";
 export class Navigation extends React.Component {
   render() {
     return (
-      <nav className="navbar navbar-toggleable-sm my-4">
-        <h1 className="navbar-brand mb-0">My app</h1>
-        <div className="navbar-collapse">
-          <ul className="navbar-nav nav mr-auto">
-            <li className="nav-item"><Link to={`/home`} className="nav-link" activeClassName="active">Home</Link></li>
-            <li className="nav-item"><Link to={`/about`} className="nav-link" activeClassName="active">About</Link></li>
-          </ul>
+      <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div className="container">
+          <div className="navbar-collapse">
+            <ul className="navbar-nav nav mr-auto">
+              <li className="nav-item"><Link to={`/home`} className="nav-link" activeClassName="active">Home</Link></li>
+              <li className="nav-item"><Link to={`/about`} className="nav-link" activeClassName="active">About</Link></li>
+              <li className="nav-item"><Link to={`/blog`} className="nav-link" activeClassName="active">Blog</Link></li>
+            </ul>
+          </div>
         </div>
       </nav>
     );
