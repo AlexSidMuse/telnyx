@@ -1,7 +1,11 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Link } from "react-router";
 import moment from 'moment';
 
+/**
+ * Rendering single blog post in the feed
+ */
 const BlogPost = (props) => {
 
   // Format date into more readable format
@@ -21,5 +25,10 @@ const BlogPost = (props) => {
     </div>
   );
 }
+
+// Type checking
+BlogPost.propTypes = {
+  post: PropTypes.object.isRequired
+};
 
 export { BlogPost }

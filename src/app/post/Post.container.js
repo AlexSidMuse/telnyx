@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { getPostBySlug } from '../gateway/posts';
 import { getCommentsByPostId, postComment } from '../gateway/comments';
 import { Post } from './Post';
@@ -6,24 +7,37 @@ import { Comments } from './comments/Comments';
 import { PostNotFound } from './post-not-found/PostNotFound';
 import moment from 'moment';
 
+/**
+ * Container component for the blog post page
+ */
 export class PostContainer extends React.Component {
   constructor(props) {
     super(props);
+
+    // Initialize state for future data
     this.state = {
       post: null,
-      comments: null
+      comments: null,
+      commentsMap: null
     };
   }
 
   componentWillMount() {
+
+    // Fetching post and comments step by step
     this.getPost().then((post) => {
       this.setState({post}, () => this.fetchAndStructureComments());
     }).catch(() => this.setState({post: 404}));
   }
 
+  /**
+   * Fetch comments from the server, apply all
+   *   necessary transformations to them
+   *   and set into the state
+   */
   fetchAndStructureComments() {
     getCommentsByPostId(this.state.post.id).then((comments) => {
-      this.setState({comments: this.generateCommentsTree(comments)});
+      this.setState(this.generateCommentsTree(comments));
     });
   }
 
@@ -46,6 +60,12 @@ export class PostContainer extends React.Component {
     })
   }
 
+  /**
+   * Generating recursive tree of comments
+   *   with a map of comments by their ids
+   * @param  {Array} comments - flat array of comments
+   * @return {Object}         - Object with recursive comments and mapped comments
+   */
   generateCommentsTree(comments) {
     const map = {};
     const commentsTree = [];
@@ -68,9 +88,10 @@ export class PostContainer extends React.Component {
       }
     });
 
-    this.commentsMap = map;
-
-    return commentsTree;
+    return {
+      comments: commentsTree,
+      commentsMap: map
+    }
   }
 
   /**
@@ -85,16 +106,29 @@ export class PostContainer extends React.Component {
     return commentBTS - commentATS;
   }
 
-  handleCommentPost(value) {
-    const comment = {
-      postId:this.state.post.id,
-      parentId: null,
-      user: 'You', // For a lack of an authentication
-      date: moment().format("YYYY-MM-DD--HH-MM-SS"),
-      content: value
-    }
+  handleCommentPost(data) {
+    const comment = Object.assign({
+      postId: this.state.post.id,
+      parent_id: null,
+      user: 'You', // Since we don't have any authentication
+      date: moment().format("YYYY-MM-DD HH:mm:ss"),
+    }, data) // For a lack of a spread operator support
 
     return postComment(comment).then(() => this.fetchAndStructureComments());
+  }
+
+  /**
+   * Open reply form for the single component
+   * It's also close all reply forms from all other comments
+   * @param  {String} id - comment id
+   */
+  openCommentReply(id) {
+    const commentsMap = Object.assign(this.state.commentsMap);
+
+    // Close previously opened replies
+    Object.keys(commentsMap).forEach((key) => delete commentsMap[key].replyOpened);
+    commentsMap[id].replyOpened = true;
+    this.setState({commentsMap: commentsMap});
   }
 
   render() {
@@ -106,8 +140,19 @@ export class PostContainer extends React.Component {
     return (
       <div>
         <Post post={this.state.post} />
-        <Comments comments={this.state.comments} handleCommentPost={this.handleCommentPost.bind(this)} />
+        <Comments
+          comments={this.state.comments}
+          commentsMap={this.state.commentsMap}
+          openCommentReply={this.openCommentReply.bind(this)}
+          handleCommentPost={this.handleCommentPost.bind(this)} />
       </div>
     )
   }
 }
+
+// Type checking
+PostContainer.propTypes = {
+  location: PropTypes.object.isRequired,
+  params: PropTypes.object.isRequired,
+};
+

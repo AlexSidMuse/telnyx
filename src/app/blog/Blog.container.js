@@ -2,6 +2,9 @@ import React from "react";
 import { getAllPosts } from '../gateway/posts';
 import { Blog } from './Blog';
 
+/**
+ * Container element for Blog Feed
+ */
 export class BlogContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +27,10 @@ export class BlogContainer extends React.Component {
   }
 
   componentWillMount() {
+
+    // Get all posts, sort them and set into state
     getAllPosts().then((posts) => this.setState({posts: this.sortDesc(posts)}));
+    
   }
   render() {
     return <div><Blog posts={this.state.posts} /></div>;

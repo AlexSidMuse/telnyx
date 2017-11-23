@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from "react-router";
 
+/**
+ * 404 page for a single post of blog
+ */
 const PostNotFound = () => {
   return (
     <div className="post-not-found">

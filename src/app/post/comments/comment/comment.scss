@@ -7,4 +7,30 @@
     font-size: 0.8rem;
     line-height: 1rem;
   }
+  .content {
+    margin: 0;
+  }
+  .reply {
+    span {
+      display: inline-block;
+      color: #007bff;
+      cursor: pointer;
+      opacity: 0;
+      transform: translate3d(0, -1rem, 0);
+      transition: all 0.3s;
+    }
+  }
+  .post-body {
+    &:hover {
+      > .reply {
+        span {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+    }
+  }
+  .post-comment-form {
+    margin-top: 1rem;
+  }
 }

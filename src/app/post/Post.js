@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 
 const Post = (props) => {
@@ -20,5 +21,10 @@ const Post = (props) => {
     </div>
   )
 }
+
+// Type checking
+Post.propTypes = {
+  post: PropTypes.object
+};
 
 export { Post }
