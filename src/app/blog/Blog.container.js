@@ -29,7 +29,7 @@ export class BlogContainer extends React.Component {
   componentWillMount() {
 
     // Get all posts, sort them and set into state
-    getAllPosts().then((posts) => this.setState({posts: this.sortDesc(posts)}));
+    this.postsLoader = getAllPosts().then((posts) => this.setState({posts: this.sortDesc(posts)}));
     
   }
   render() {

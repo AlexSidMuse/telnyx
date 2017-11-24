@@ -2,6 +2,9 @@
  * Application entry point.
  */
 
+// Initial config
+import "./config";
+
 // Global application styles
 import "src/app.scss";
 
