@@ -10,7 +10,7 @@
 ## Unit testing
 - All components in the `blog` folder are covered with unit tests.  
 - **[Enzyme](https://github.com/airbnb/enzyme)** library was utilized as a testing helper.  
-- Components inside `post` category weren't tested because of time consumption. If you need the whole app to be covered for review process let me know please.
+- Components inside `post` folder weren't tested because of time consumption. If you need the whole app to be covered for review process let me know please.
 
 ## Side note
-I had fun indeed :) It's an easy to use starter kit.
+I had fun indeed :) It's a great and easy to use starter kit.
