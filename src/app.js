@@ -36,7 +36,7 @@ render((
   /**
    * Using this trick to prevent unstyled footer from flickering on the page
    *   while app is rendering initially.
-   * Also providing opacity animation for every app entrance.
+   * Also providing opacity animation for every initial app entrance.
    */
   document.body.classList.add('app-rendered');
 });
