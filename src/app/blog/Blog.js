@@ -1,6 +1,7 @@
 import React from "react";
 import { BlogPost } from './blog-post/BlogPost';
 import PropTypes from 'prop-types';
+import { LoadingSpinner } from '../loading-spinner/LoadingSpinner';
 
 /**
  * Rendering blog feed
@@ -12,7 +13,7 @@ export class Blog extends React.Component {
    * @return {Array} - array of react components
    */
   renderPosts() {
-    if (!this.props.posts) { return null };
+    if (!this.props.posts) { return <LoadingSpinner /> };
     return this.props.posts.map((post) => <BlogPost post={post} key={post.id} />);
   }
 

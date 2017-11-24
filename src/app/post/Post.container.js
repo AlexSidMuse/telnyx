@@ -101,8 +101,8 @@ export class PostContainer extends React.Component {
    * @return {Number}          - number for soring
    */
   sortCommentsRule(commentA, commentB) {
-    const commentATS = new Date(commentA.date).getTime();
-    const commentBTS = new Date(commentB.date).getTime();
+    const commentATS = moment(commentA.date).unix();
+    const commentBTS = moment(commentB.date).unix();
     return commentBTS - commentATS;
   }
 

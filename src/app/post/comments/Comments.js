@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Comment } from './comment/Comment';
 import { PostCommentForm } from './post-comment-form/PostCommentForm';
+import { LoadingSpinner } from '../../loading-spinner/LoadingSpinner'
 
 /**
  * Whole comments system
@@ -32,16 +33,23 @@ export class Comments extends React.Component {
     });
   }
 
-  render() {
+  renderBody() {
+    if (!this.props.comments) { return <LoadingSpinner />}
+    return (
+      <div>
+        <PostCommentForm handlePost={(data) => this.props.handleCommentPost(data)} />
+        <div className="comments-list">{this.renderComments(this.props.comments)}</div>
+      </div>
+    );
+  }
 
-    if (!this.props.comments) { return null; }
+  render() {
 
     return  (
       <div className="post-comments">
         <h3>Comments</h3>
         <hr />
-        <PostCommentForm handlePost={(data) => this.props.handleCommentPost(data)} />
-        <div className="comments-list">{this.renderComments(this.props.comments)}</div>
+        {this.renderBody()}
       </div>
     )
   }

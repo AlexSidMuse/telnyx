@@ -16,6 +16,9 @@ $container-max-widths: (
 // Manifest
 @import "scss/base";
 
+// Loading Spinner
+@import "app/loading-spinner/LoadingSpinner";
+
 // Blog
 @import "app/blog/Blog.scss";
 

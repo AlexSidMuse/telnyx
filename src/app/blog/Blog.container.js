@@ -1,6 +1,7 @@
 import React from "react";
 import { getAllPosts } from '../gateway/posts';
 import { Blog } from './Blog';
+import moment from 'moment';
 
 /**
  * Container element for Blog Feed
@@ -20,8 +21,8 @@ export class BlogContainer extends React.Component {
    */
   sortDesc(posts) {
     return posts.sort((postA, postB) => {
-      const postATS = new Date(postA.publish_date).getTime();
-      const postBTS = new Date(postB.publish_date).getTime();
+      const postATS = moment(postA.publish_date).unix();
+      const postBTS = moment(postB.publish_date).unix();
       return postBTS - postATS;
     });
   }

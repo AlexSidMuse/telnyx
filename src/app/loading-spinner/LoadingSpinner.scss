@@ -1,0 +1,23 @@
+// tobiasahlin.com/spinkit/
+.spinner-holder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10rem;
+  .spinner {
+    width: 5rem;
+    height: 5rem;
+    background-color: theme-color('secondary');
+    border-radius: 100%;  
+    animation: sk-scaleout 1.0s infinite ease-in-out;
+  }
+}
+
+@keyframes sk-scaleout {
+  0% { 
+    transform: scale(0);
+  } 100% {
+    transform: scale(1.0);
+    opacity: 0;
+  }
+}

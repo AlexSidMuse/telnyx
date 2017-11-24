@@ -31,4 +31,12 @@ render((
       <Redirect from="*" to="/home"/>
     </Route>
   </Router>
-), document.getElementById("root"));
+), document.getElementById("root"), () => {
+
+  /**
+   * Using this trick to prevent unstyled footer from flickering on the page
+   *   while app is rendering initially.
+   * Also providing opacity animation for every app entrance.
+   */
+  document.body.classList.add('app-rendered');
+});
